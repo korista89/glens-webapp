@@ -1,0 +1,14 @@
+{
+  "student": {"name": "샘플 학생", "grade": "중1"},
+  "date": "2025-10-12",
+  "strengths": ["감각 적응 활동 참여", "일과 전환 시 시각단서 반응"],
+  "focus": ["요구하기 빈도 확장", "대기 행동 30초 유지"],
+  "recommendedIEP": [
+    "비구어 요구(PECS/AAC) 1회/분 달성",
+    "전환 예고 1분 전에 시각단서 제시 후 문제행동 50% 감소"
+  ],
+  "domains": {
+    "Communication": {"score": 12, "targets": ["요구어휘 10개 확장"]},
+    "Self-Management": {"score": 9, "targets": ["대기 30초 → 60초 단계상향"]}
+  }
+}
