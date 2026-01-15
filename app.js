@@ -3454,6 +3454,10 @@ function DashboardTab({
                   <span>최근 평가</span>
                   <strong>{latestMonth ? monthKeyToLabel(latestMonth) : "-"}</strong>
                 </div>
+                <div>
+                  <span>선택 월</span>
+                  <strong>{selectedMonth ? monthKeyToLabel(selectedMonth) : "-"}</strong>
+                </div>
               </div>
               <div className="profile-score">
                 <span>평균 점수</span>
