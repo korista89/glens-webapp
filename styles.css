@@ -1207,6 +1207,77 @@ h3{margin:6px 0 12px 0; font-size:16px; font-weight:600}
   flex-direction:column;
   gap:18px;
 }
+.benchmark-panel{
+  border:1px solid #dbe2f0;
+  border-radius:16px;
+  padding:16px;
+  background:linear-gradient(135deg,#f8fafc 0%, #eef2ff 100%);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.benchmark-header{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+}
+.benchmark-legend{display:flex; gap:8px; flex-wrap:wrap}
+.benchmark-pill{
+  background:#1d4ed8;
+  color:#fff;
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+}
+.benchmark-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.benchmark-card{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:200px;
+}
+.benchmark-card h4{margin:0; font-size:14px; color:#1f2937}
+.benchmark-tags{display:flex; flex-wrap:wrap; gap:6px}
+.benchmark-tags span{
+  background:#eef2ff;
+  color:#1e3a8a;
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:999px;
+}
+.benchmark-card ul{
+  margin:0;
+  padding-left:18px;
+  font-size:12px;
+  color:#475569;
+}
+.benchmark-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  background:#fff;
+  border:1px solid #dbe2f0;
+  border-radius:12px;
+  padding:12px 14px;
+}
+.benchmark-actions ul{
+  margin:0;
+  padding-left:18px;
+  font-size:12px;
+  color:#1f2937;
+}
 .dashboard-extra{
   display:flex;
   flex-direction:column;
