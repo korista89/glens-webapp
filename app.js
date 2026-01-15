@@ -8,7 +8,8 @@ const TAB_KEYS = {
   evaluation: "evaluation",
   report: "report",
   dashboard: "dashboard",
-  goals: "goals"
+  goals: "goals",
+  benchmark: "benchmark"
 };
 
 const LOCAL_STORAGE_KEYS = {
@@ -185,6 +186,91 @@ const DEFAULT_EVALUATIONS = {
     }
   }
 };
+
+const BENCHMARK_INSIGHTS = [
+  {
+    title: "ABA·PBIS 행동 데이터 실시간 트래킹",
+    description: "ABC 데이터, 빈도·지속시간, 강화 스케줄을 한 화면에서 캡처하고 교실·가정 환경을 분리 분석합니다.",
+    tags: ["실시간 이벤트", "강화 스케줄", "행동 함수 분석"],
+    focus: ["일일 패턴 감지", "강화 이력 타임라인", "자동 위험 신호"]
+  },
+  {
+    title: "VB-MAPP·EFL 기반 목표 매핑",
+    description: "표준 평가 문항과 IEP 목표를 자동 연결해 목표-기술-활동 추천 흐름을 구성합니다.",
+    tags: ["표준 연계", "목표 추천", "난이도 스캐폴딩"],
+    focus: ["목표-활동 매핑", "유사 목표 검색", "기준별 진행률"]
+  },
+  {
+    title: "TEACCH 시각 지원 설계",
+    description: "시각 일정표, 작업 시스템, 구조화된 환경 요소를 빠르게 구성하도록 템플릿을 제공합니다.",
+    tags: ["시각 일정", "환경 구조화", "자립성 강화"],
+    focus: ["일과 구성 자동화", "교실 레이아웃 힌트", "선호 자극 카드"]
+  },
+  {
+    title: "AI 코스웨어 + 수업 흐름 추천",
+    description: "AI 기반 미션/퀘스트형 수업 스크립트와 맞춤 과제를 자동 생성합니다.",
+    tags: ["AI 수업 설계", "미션 기반", "적응형 과제"],
+    focus: ["세션 목표 요약", "진행 중 피드백", "형성 평가 카드"]
+  },
+  {
+    title: "다중 이해관계자 포털",
+    description: "교사, 치료사, 보호자가 동일한 리포트를 공유하고 코멘트를 남기는 협업 허브를 구성합니다.",
+    tags: ["협업", "알림", "접근 권한"],
+    focus: ["상호 피드백", "보호자 요약 리포트", "승인 워크플로"]
+  },
+  {
+    title: "데이터 시각화 & 성장 예측",
+    description: "성장 곡선, 위험 추적, 개입 효과 분석을 대시보드에 통합합니다.",
+    tags: ["성장 예측", "효과 분석", "경보 신호"],
+    focus: ["성과 KPI", "개입 전후 비교", "리스크 레이더"]
+  }
+];
+
+const BENCHMARK_PROGRAMS = [
+  {
+    title: "행동 데이터 플랫폼",
+    description: "ABC 기록, 빈도/지속시간, 강화 스케줄을 모바일에서 즉시 입력하도록 설계합니다.",
+    outcomes: ["행동 패턴 자동 요약", "교실/가정 분리 리포트", "위기 신호 알림"]
+  },
+  {
+    title: "IEP·평가 연동 코스웨어",
+    description: "VB-MAPP/EFL/LifeSkills 문항을 목표-활동-자료로 자동 연결합니다.",
+    outcomes: ["목표 자동 추천", "과제 난이도 스캐폴딩", "IEP 증빙 리포트"]
+  },
+  {
+    title: "TEACCH 시각 지원 툴킷",
+    description: "시각 일정표, 작업 시스템, 구조화된 환경을 드래그 앤 드롭으로 구성합니다.",
+    outcomes: ["일과 카드 자동 생성", "환경 구성 체크리스트", "전이 지원 알림"]
+  },
+  {
+    title: "다중 이해관계자 협업 허브",
+    description: "교사·치료사·보호자가 같은 리포트를 보고 의견을 남깁니다.",
+    outcomes: ["공유 리포트 링크", "승인 워크플로", "알림/코멘트 로그"]
+  },
+  {
+    title: "AI 코칭 & 피드백 엔진",
+    description: "수업 흐름, 강화 전략, 과제 난이도를 상황에 맞게 추천합니다.",
+    outcomes: ["수업 스크립트 생성", "형성 평가 카드", "실시간 피드백"]
+  }
+];
+
+const UPGRADE_ROADMAP = [
+  {
+    stage: "0-2주",
+    goal: "행동 데이터 캡처 MVP",
+    tasks: ["모바일 ABC 기록 폼", "PBIS 포인트 타임라인", "실시간 알림 룰 정의"]
+  },
+  {
+    stage: "3-5주",
+    goal: "IEP 목표-활동 매핑",
+    tasks: ["목표 추천 로직 연결", "활동 템플릿 라이브러리", "진행률 리포트"]
+  },
+  {
+    stage: "6-8주",
+    goal: "보호자 리포트 & 공유",
+    tasks: ["요약 PDF 리디자인", "공유 링크 권한", "코멘트/승인 흐름"]
+  }
+];
 
 const DEFAULT_STUDENT_GOALS = {
   "stu-001": {
@@ -731,7 +817,8 @@ function TabNav({ activeTab, onChange }) {
     { key: TAB_KEYS.evaluation, label: "평가 도구" },
     { key: TAB_KEYS.report, label: "결과 보고서" },
     { key: TAB_KEYS.dashboard, label: "학생별 대시보드" },
-    { key: TAB_KEYS.goals, label: "목표 목록" }
+    { key: TAB_KEYS.goals, label: "목표 목록" },
+    { key: TAB_KEYS.benchmark, label: "업그레이드" }
   ];
   return (
     <nav className="tab-nav" aria-label="G-LENS 탭">
@@ -3420,6 +3507,49 @@ function DashboardTab({
             </div>
           </div>
 
+          <section className="benchmark-panel">
+            <div className="benchmark-header">
+              <div>
+                <h3>📌 최신 벤치마크 기반 업그레이드 제안</h3>
+                <p className="muted">ABA·PBIS·특수교육·EFL·VB-MAPP·TEACCH·에듀테크 트렌드를 반영한 핵심 모듈입니다.</p>
+              </div>
+              <div className="benchmark-legend">
+                <span className="benchmark-pill">프로그램 흐름</span>
+                <span className="benchmark-pill">데이터 시각화</span>
+                <span className="benchmark-pill">AI 코스웨어</span>
+              </div>
+            </div>
+            <div className="benchmark-grid">
+              {BENCHMARK_INSIGHTS.map((insight) => (
+                <article key={insight.title} className="benchmark-card">
+                  <h4>{insight.title}</h4>
+                  <p className="muted">{insight.description}</p>
+                  <div className="benchmark-tags">
+                    {insight.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <ul>
+                    {insight.focus.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            <div className="benchmark-actions">
+              <div>
+                <strong>다음 단계</strong>
+                <p className="muted">우선순위 설정 후, 모듈별 MVP 화면과 데이터 연결을 순차 적용하세요.</p>
+              </div>
+              <ul>
+                <li>행동 데이터 캡처 폼 + 모바일 뷰 추가</li>
+                <li>IEP 목표-활동 자동 매핑 리포트 생성</li>
+                <li>가족용 요약 리포트 PDF 템플릿 개선</li>
+              </ul>
+            </div>
+          </section>
+
           <div className="stat-grid">
             <div className="stat-card">
               <span>현재 평균 점수</span>
@@ -4403,6 +4533,95 @@ function GoalLibraryTab({ iepLibrary, onUpdateLibrary, enqueueAlert }) {
   );
 }
 
+function BenchmarkTab() {
+  return (
+    <section className="card benchmark-tab">
+      <div className="benchmark-hero">
+        <div>
+          <h2>🚀 G-LENS 업그레이드 벤치마크</h2>
+          <p className="muted">
+            ABA·PBIS·특수교육·VB-MAPP·EFL·TEACCH·AI 코스웨어 최신 흐름을 반영해 웹앱 로드맵을 정리했습니다.
+          </p>
+        </div>
+        <div className="benchmark-kpis">
+          <div>
+            <strong>6</strong>
+            <span>핵심 모듈</span>
+          </div>
+          <div>
+            <strong>3</strong>
+            <span>우선순위 단계</span>
+          </div>
+          <div>
+            <strong>12</strong>
+            <span>UI/UX 개선 포인트</span>
+          </div>
+        </div>
+      </div>
+
+      <section className="benchmark-section">
+        <h3>핵심 모듈 벤치마크</h3>
+        <div className="benchmark-grid">
+          {BENCHMARK_INSIGHTS.map((insight) => (
+            <article key={insight.title} className="benchmark-card">
+              <h4>{insight.title}</h4>
+              <p className="muted">{insight.description}</p>
+              <div className="benchmark-tags">
+                {insight.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <ul>
+                {insight.focus.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="benchmark-section">
+        <h3>업그레이드 방향성 (제품/서비스 타입)</h3>
+        <div className="benchmark-matrix">
+          {BENCHMARK_PROGRAMS.map((program) => (
+            <div key={program.title} className="benchmark-matrix-card">
+              <div>
+                <strong>{program.title}</strong>
+                <p className="muted">{program.description}</p>
+              </div>
+              <ul>
+                {program.outcomes.map((outcome) => (
+                  <li key={outcome}>{outcome}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="benchmark-section">
+        <h3>8주 로드맵 제안</h3>
+        <div className="benchmark-roadmap">
+          {UPGRADE_ROADMAP.map((item) => (
+            <div key={item.stage} className="benchmark-roadmap-step">
+              <div>
+                <span className="benchmark-stage">{item.stage}</span>
+                <strong>{item.goal}</strong>
+              </div>
+              <ul>
+                {item.tasks.map((task) => (
+                  <li key={task}>{task}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    </section>
+  );
+}
+
 function App() {
   // Register Chart.js datalabels plugin globally
   useEffect(() => {
@@ -4817,6 +5036,10 @@ const [studentGoals, setStudentGoals] = useState(() => loadFromStorage("glens-st
           onUpdateLibrary={handleUpdateLibrary}
           enqueueAlert={enqueueAlert}
         />
+      ) : null}
+
+      {activeTab === TAB_KEYS.benchmark ? (
+        <BenchmarkTab />
       ) : null}
     </div>
   );
