@@ -186,6 +186,45 @@ const DEFAULT_EVALUATIONS = {
   }
 };
 
+const BENCHMARK_INSIGHTS = [
+  {
+    title: "ABA·PBIS 행동 데이터 실시간 트래킹",
+    description: "ABC 데이터, 빈도·지속시간, 강화 스케줄을 한 화면에서 캡처하고 교실·가정 환경을 분리 분석합니다.",
+    tags: ["실시간 이벤트", "강화 스케줄", "행동 함수 분석"],
+    focus: ["일일 패턴 감지", "강화 이력 타임라인", "자동 위험 신호"]
+  },
+  {
+    title: "VB-MAPP·EFL 기반 목표 매핑",
+    description: "표준 평가 문항과 IEP 목표를 자동 연결해 목표-기술-활동 추천 흐름을 구성합니다.",
+    tags: ["표준 연계", "목표 추천", "난이도 스캐폴딩"],
+    focus: ["목표-활동 매핑", "유사 목표 검색", "기준별 진행률"]
+  },
+  {
+    title: "TEACCH 시각 지원 설계",
+    description: "시각 일정표, 작업 시스템, 구조화된 환경 요소를 빠르게 구성하도록 템플릿을 제공합니다.",
+    tags: ["시각 일정", "환경 구조화", "자립성 강화"],
+    focus: ["일과 구성 자동화", "교실 레이아웃 힌트", "선호 자극 카드"]
+  },
+  {
+    title: "AI 코스웨어 + 수업 흐름 추천",
+    description: "AI 기반 미션/퀘스트형 수업 스크립트와 맞춤 과제를 자동 생성합니다.",
+    tags: ["AI 수업 설계", "미션 기반", "적응형 과제"],
+    focus: ["세션 목표 요약", "진행 중 피드백", "형성 평가 카드"]
+  },
+  {
+    title: "다중 이해관계자 포털",
+    description: "교사, 치료사, 보호자가 동일한 리포트를 공유하고 코멘트를 남기는 협업 허브를 구성합니다.",
+    tags: ["협업", "알림", "접근 권한"],
+    focus: ["상호 피드백", "보호자 요약 리포트", "승인 워크플로"]
+  },
+  {
+    title: "데이터 시각화 & 성장 예측",
+    description: "성장 곡선, 위험 추적, 개입 효과 분석을 대시보드에 통합합니다.",
+    tags: ["성장 예측", "효과 분석", "경보 신호"],
+    focus: ["성과 KPI", "개입 전후 비교", "리스크 레이더"]
+  }
+];
+
 const DEFAULT_STUDENT_GOALS = {
   "stu-001": {
     active: [
@@ -3419,6 +3458,49 @@ function DashboardTab({
               <strong>{months.length ? monthKeyToLabel(months.slice(-1)[0]) : "-"}</strong>
             </div>
           </div>
+
+          <section className="benchmark-panel">
+            <div className="benchmark-header">
+              <div>
+                <h3>📌 최신 벤치마크 기반 업그레이드 제안</h3>
+                <p className="muted">ABA·PBIS·특수교육·EFL·VB-MAPP·TEACCH·에듀테크 트렌드를 반영한 핵심 모듈입니다.</p>
+              </div>
+              <div className="benchmark-legend">
+                <span className="benchmark-pill">프로그램 흐름</span>
+                <span className="benchmark-pill">데이터 시각화</span>
+                <span className="benchmark-pill">AI 코스웨어</span>
+              </div>
+            </div>
+            <div className="benchmark-grid">
+              {BENCHMARK_INSIGHTS.map((insight) => (
+                <article key={insight.title} className="benchmark-card">
+                  <h4>{insight.title}</h4>
+                  <p className="muted">{insight.description}</p>
+                  <div className="benchmark-tags">
+                    {insight.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <ul>
+                    {insight.focus.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            <div className="benchmark-actions">
+              <div>
+                <strong>다음 단계</strong>
+                <p className="muted">우선순위 설정 후, 모듈별 MVP 화면과 데이터 연결을 순차 적용하세요.</p>
+              </div>
+              <ul>
+                <li>행동 데이터 캡처 폼 + 모바일 뷰 추가</li>
+                <li>IEP 목표-활동 자동 매핑 리포트 생성</li>
+                <li>가족용 요약 리포트 PDF 템플릿 개선</li>
+              </ul>
+            </div>
+          </section>
 
           <div className="stat-grid">
             <div className="stat-card">
